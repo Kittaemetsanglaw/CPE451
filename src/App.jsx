@@ -1,40 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import CourseDetails from './components/CourseDetails';
 import AttendanceList from './components/AttendanceList';
 import ScanPage from './components/ScanPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState('login');
-  const [user, setUser] = useState(null);
-
-  const handleLogin = (username) => {
-    setUser(username);
-    setCurrentPage('courses');
-  };
-
-  const handleNavigate = (page) => {
-    setCurrentPage(page);
-  };
-
   return (
-    <div className="App">
-      {currentPage === 'login' && (
-        <LoginPage onLogin={handleLogin} />
-      )}
-      
-      {currentPage === 'courses' && (
-        <CourseDetails onNavigate={handleNavigate} />
-      )}
-      
-      {currentPage === 'attendance' && (
-        <AttendanceList onNavigate={handleNavigate} />
-      )}
-      
-      {currentPage === 'scan' && (
-        <ScanPage onNavigate={handleNavigate} />
-      )}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/courses" element={
+          <ProtectedRoute>
+            <CourseDetails />
+          </ProtectedRoute>
+        } />
+        <Route path="/attendance" element={
+          <ProtectedRoute>
+            <AttendanceList />
+          </ProtectedRoute>
+        } />
+        <Route path="/scan" element={
+          <ProtectedRoute>
+            <ScanPage />
+          </ProtectedRoute>
+        } />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

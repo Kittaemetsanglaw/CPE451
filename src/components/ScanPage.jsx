@@ -1,104 +1,80 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ScanPage = ({ onNavigate }) => {
-  const [studentName, setStudentName] = useState('');
-  const [studentId, setStudentId] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
+const AttendanceList = () => {
+  const navigate = useNavigate();
+  const [students] = useState([
+    { id: '65000001', name: 'นาย ณัฐวุฒิ สิงขุนล', present: false, absent: false },
+    { id: '65000002', name: 'นาย ธนภัทร ศิริเทพ', present: false, absent: false },
+    { id: '65000003', name: 'นาย สราวุฒิ เพิชรพหุมนาตร์', present: false, absent: false },
+    { id: '65000004', name: 'นาย ชญานนท์ ตันธนสข', present: false, absent: false },
+    { id: '65000005', name: 'นาย กฤตเมธ สิงห์ลาว', present: false, absent: false },
+  ]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Process the attendance data
-    console.log({ studentName, studentId, date, time });
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/');
   };
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="bg-[#131B62] p-4 flex justify-between items-center">
+      <header className="bg-navy-900 p-4 flex justify-between items-center">
         <div></div>
         <button 
           className="bg-white px-4 py-2 rounded-md font-medium"
-          onClick={() => onNavigate('login')}
+          onClick={handleLogout}
         >
           Log out
         </button>
       </header>
 
       <div className="p-6">
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1">
-            <div className="border-4 border-navy-900 rounded-lg overflow-hidden">
-              <div className="h-64 bg-white flex items-end justify-center">
-                <div className="bg-[#3754ED] w-full py-4 text-center">
-                  <span className="text-white text-2xl font-serif">SCAN ME</span>
-                </div>
-              </div>
-            </div>
-            <div className="mt-2 text-center">
-              <button className="inline-flex items-center">
-                <span className="border-2 border-green-500 p-1 mr-2">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="2" y="2" width="20" height="20" rx="5" />
-                  </svg>
-                </span>
-                <span className="text-lg">แสกนใบหน้า</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <div className="border-4 border-blue-900 rounded-lg p-6">
-              <h3 className="text-xl mb-4">ข้อมูลนักศึกษา</h3>
-              
-              <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                  <input
-                    type="text"
-                    className="w-full p-3 border rounded"
-                    placeholder="ชื่อ - นามสกุล :"
-                    value={studentName}
-                    onChange={(e) => setStudentName(e.target.value)}
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <input
-                    type="text"
-                    className="w-full p-3 border rounded"
-                    placeholder="รหัสนักศึกษา :"
-                    value={studentId}
-                    onChange={(e) => setStudentId(e.target.value)}
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <input
-                    type="text"
-                    className="w-full p-3 border rounded"
-                    placeholder="วันที่ :"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                  />
-                </div>
-                
-                <div className="mb-4">
-                  <input
-                    type="text"
-                    className="w-full p-3 border rounded"
-                    placeholder="เวลา :"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <h2 className="text-lg mb-4">รายละเอียดการเช็คชื่อเข้าเรียน : 25/02/2568</h2>
         
+        <div className="flex items-center mb-6">
+          <div className="w-16 h-16 bg-navy-900 rounded-full mr-4 flex items-center justify-center">
+            <div className="w-6 h-6 bg-white rounded-full relative">
+              <div className="w-8 h-4 bg-white absolute top-6 rounded-t-full"></div>
+            </div>
+          </div>
+          <h3 className="text-xl">อาจารย์สุรชัย ทองแก้ว</h3>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr>
+                <th className="border p-2 text-left">รหัสนักศึกษา</th>
+                <th className="border p-2 text-left">ชื่อ - นามสกุล</th>
+                <th className="border p-2 text-center">เข้าเรียน</th>
+                <th className="border p-2 text-center">ขาดเรียน</th>
+              </tr>
+            </thead>
+            <tbody>
+              {students.map(student => (
+                <tr key={student.id}>
+                  <td className="border p-2">{student.id}</td>
+                  <td className="border p-2">{student.name}</td>
+                  <td className="border p-2 text-center">
+                    <div className="flex justify-center">
+                      <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
+                    </div>
+                  </td>
+                  <td className="border p-2 text-center">
+                    <div className="flex justify-center">
+                      <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <div className="flex justify-end mt-6">
           <button 
             className="bg-green-500 text-white px-6 py-3 rounded-md"
-            onClick={() => onNavigate('attendance')}
+            onClick={() => navigate('/scan')}
           >
             เสร็จสิ้น
           </button>
@@ -108,4 +84,4 @@ const ScanPage = ({ onNavigate }) => {
   );
 };
 
-export default ScanPage;
+export default AttendanceList;

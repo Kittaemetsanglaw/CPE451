@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CourseDetails = ({ onNavigate }) => {
+const CourseDetails = () => {
+  const navigate = useNavigate();
+  
   const courseData = {
     date: '25/02/2568',
     teacher: 'อาจารย์สุรชัย ทองแก้ว',
@@ -9,13 +12,18 @@ const CourseDetails = ({ onNavigate }) => {
     ]
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/');
+  };
+
   return (
     <div className="min-h-screen bg-white">
-      <header className="bg-[#131B62] p-4 flex justify-between items-center">
+      <header className="bg-navy-900 p-4 flex justify-between items-center">
         <div></div>
         <button 
           className="bg-white px-4 py-2 rounded-md font-medium"
-          onClick={() => onNavigate('login')}
+          onClick={handleLogout}
         >
           Log out
         </button>
@@ -25,9 +33,9 @@ const CourseDetails = ({ onNavigate }) => {
         <h2 className="text-lg mb-4">รายละเอียดการเช็คชื่อเข้าเรียน : {courseData.date}</h2>
         
         <div className="flex items-center mb-6">
-          <div className="w-16 h-16 bg-[#131B62] rounded-full mr-4 flex items-center justify-center">
+          <div className="w-16 h-16 bg-navy-900 rounded-full mr-4 flex items-center justify-center">
             <div className="w-6 h-6 bg-white rounded-full relative">
-              <div className="w-8 h-5 bg-white absolute top-6 rounded-t-full"></div>
+              <div className="w-8 h-4 bg-white absolute top-6 rounded-t-full "></div>
             </div>
           </div>
           <h3 className="text-xl">{courseData.teacher}</h3>
@@ -54,18 +62,22 @@ const CourseDetails = ({ onNavigate }) => {
                   <td className="border p-2">
                     <button 
                       className="bg-green-600 text-white px-3 py-1 rounded"
-                      onClick={() => onNavigate('attendance')}
+                      onClick={() => navigate('/attendance')}
                     >
                       เช็คชื่อ
                     </button>
                   </td>
                   <td className="border p-2">
-                    <button className="bg-[#131B62] text-white px-3 py-1 rounded">
+                    <button className="bg-blue-600 text-white px-3 py-1 rounded"
+                    onClick={() => navigate('/attendance')}
+                    >
                       ดูประวัติ
                     </button>
                   </td>
                   <td className="border p-2">
-                    <button className="bg-orange-500 text-white px-3 py-1 rounded">
+                    <button className="bg-orange-500 text-white px-3 py-1 rounded"
+                    onClick={() => navigate('/attendance')}
+                    >
                       แก้ไข
                     </button>
                   </td>
