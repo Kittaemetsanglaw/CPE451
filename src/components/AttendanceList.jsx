@@ -18,7 +18,7 @@ const AttendanceList = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="bg-navy-900 p-4 flex justify-between items-center">
+      <header className="bg-[#131B62] p-4 flex justify-between items-center">
         <div></div>
         <button 
           className="bg-white px-4 py-2 rounded-md font-medium"
@@ -32,12 +32,12 @@ const AttendanceList = () => {
         <h2 className="text-lg mb-4">รายละเอียดการเช็คชื่อเข้าเรียน : 25/02/2568</h2>
         
         <div className="flex items-center mb-6">
-          <div className="w-16 h-16 bg-navy-900 rounded-full mr-4 flex items-center justify-center">
+          <div className="w-16 h-16 bg-[#080E2D] rounded-full mr-4 flex items-center justify-center">
             <div className="w-6 h-6 bg-white rounded-full relative">
-              <div className="w-8 h-4 bg-white absolute top-6 rounded-t-full"></div>
+              <div className="w-8 h-5 bg-white absolute top-6 rounded-t-full "></div>
             </div>
           </div>
-          <h3 className="text-xl">อาจารย์สุรชัย ทองแก้ว</h3>
+          <h3 className="text-xl">อาจารย์สุรชัย ทองแก้ว</h3> 
         </div>
 
         <div className="overflow-x-auto">
@@ -48,6 +48,7 @@ const AttendanceList = () => {
                 <th className="border p-2 text-left">ชื่อ - นามสกุล</th>
                 <th className="border p-2 text-center">เข้าเรียน</th>
                 <th className="border p-2 text-center">ขาดเรียน</th>
+                <th className="border p-2 text-center">มาสาย</th>
               </tr>
             </thead>
             <tbody>

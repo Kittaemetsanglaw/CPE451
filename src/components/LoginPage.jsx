@@ -19,9 +19,9 @@ const LoginPage = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
         <div className="flex justify-center mb-6">
-          <div className="w-24 h-24 bg-navy-900 rounded-full flex items-center justify-center">
-            <div className="w-10 h-10 bg-white rounded-full relative">
-              <div className="w-12 h-6 bg-white absolute top-10 rounded-t-full"></div>
+          <div className="w-24 h-24 bg-[#080E2D] rounded-full flex items-center justify-center">
+           <div className="w-10 h-10 bg-white rounded-full relative">
+             <div className="w-12 h-7 bg-white absolute top-10 rounded-t-full"></div>
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@ const LoginPage = () => {
           
           <button
             type="submit"
-            className="w-full p-3 bg-navy-900 text-white rounded uppercase font-bold"
+            className="w-full p-3 bg-[#131B62] text-white rounded uppercase font-bold"
           >
             LOGIN
           </button>
